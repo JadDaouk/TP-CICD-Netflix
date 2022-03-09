@@ -8,7 +8,21 @@ pipeline {
         stage('build') {
             steps {
                 sh '''
-                mvn clean install test surefire-report:report
+                mvn clean build
+                '''
+            }
+        }
+        stage('test') {
+            steps {
+                sh '''
+                mvn clean test surefire-report:report
+                '''
+            }
+        }
+        stage('test results') {
+            steps {
+                sh '''
+                junit '**/target/surefire-report/TEST-*.xml'
                 '''
             }
         }
