@@ -16,8 +16,8 @@ pipeline {
             steps {
                 sh '''
                 mvn test surefire-report:report
-                junit '**/target/surefire-reports/TEST-*.xml'
                 '''
+                junit '**/target/surefire-reports/TEST-*.xml'
             }
         }
         stage('launch jar') {
