@@ -16,26 +16,14 @@ pipeline {
             steps {
                 sh '''
                 mvn test surefire-report:report
-                '''
-            }
-        }
-        stage('test results') {
-            steps {
                 junit '**/target/surefire-reports/TEST-*.xml'
+                '''
             }
         }
         stage('launch jar') {
             steps {
                 sh '''
                 java -jar  ./target/netflix-1.0.0.jar  ./netflix_titles.csv
-                '''
-            }
-        }
-        stage('verify') {
-            steps {
-                sh '''
-                cd ./out
-                ls
                 '''
             }
         }
@@ -54,7 +42,6 @@ pipeline {
                 mvn verify sonar:sonar
                 '''
                 }
-
             }
         }
         stage('clear') {
