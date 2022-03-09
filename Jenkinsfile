@@ -6,20 +6,26 @@ pipeline {
     }
     stages{
         stage('build'){
-            sh '''
+            step{
+                sh '''
                 mvm clean install
-            '''
+                '''
+            }
         }
         stage('launch jar'){
-            sh '''
+            step{
+                sh '''
                 java -jar  netflix-1.0.0.jar  ./netflix_titles.csv
-            '''
+                '''
+            }
         }
         stage('verify'){
-        sh '''
-            cd ./out
-            ls
-        '''
+            step{
+                sh '''
+                cd ./out
+                ls
+                '''
+            }
         }
     }
 }
