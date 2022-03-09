@@ -30,6 +30,7 @@ pipeline {
         stage('mv to out') {
             steps {
                 sh '''
+                rmdir /out
                 mv ./out/* /out
                 '''
             }
