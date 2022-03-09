@@ -47,6 +47,16 @@ pipeline {
                 '''
             }
         }
+        stage('sonarQube') {
+            steps {
+                withSonarQubeEnv('SonarQube greg') {
+                sh '''
+                mvn verify sonar:sonar
+                '''
+                }
+
+            }
+        }
         stage('clear') {
              steps {
                   cleanWs deleteDirs: true
