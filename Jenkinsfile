@@ -4,23 +4,23 @@ pipeline {
             image 'maven:3.8.1-adoptopenjdk-11'
         }
     }
-    stages{
-        stage('build'){
-            step{
+    stages {
+        stage('build') {
+            steps {
                 sh '''
                 mvm clean install
                 '''
             }
         }
-        stage('launch jar'){
-            step{
+        stage('launch jar') {
+            steps {
                 sh '''
                 java -jar  netflix-1.0.0.jar  ./netflix_titles.csv
                 '''
             }
         }
-        stage('verify'){
-            step{
+        stage('verify') {
+            steps {
                 sh '''
                 cd ./out
                 ls
