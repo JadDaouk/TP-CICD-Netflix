@@ -30,7 +30,7 @@ pipeline {
         stage('mv to out') {
             steps {
                 sh '''
-                mv * /out
+                mv ./out/* /out
                 '''
             }
         }
