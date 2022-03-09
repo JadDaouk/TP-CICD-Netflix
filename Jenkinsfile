@@ -15,7 +15,7 @@ pipeline {
         stage('launch jar') {
             steps {
                 sh '''
-                java -jar  netflix-1.0.0.jar  ./netflix_titles.csv
+                java -jar  ./target/netflix-1.0.0.jar  ./netflix_titles.csv
                 '''
             }
         }
