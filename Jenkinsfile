@@ -21,9 +21,7 @@ pipeline {
         }
         stage('test results') {
             steps {
-                sh '''
                 junit '**/target/surefire-report/TEST-*.xml'
-                '''
             }
         }
         stage('launch jar') {
