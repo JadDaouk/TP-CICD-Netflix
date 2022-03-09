@@ -15,7 +15,7 @@ pipeline {
         stage('test') {
             steps {
                 sh '''
-                mvn clean test surefire-report:report
+                mvn test surefire-report:report
                 '''
             }
         }
