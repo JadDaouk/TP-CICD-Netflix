@@ -8,7 +8,7 @@ pipeline {
         stage('build') {
             steps {
                 sh '''
-                mvn clean install
+                mvn clean install test surefire-report:report
                 '''
             }
         }
@@ -33,6 +33,11 @@ pipeline {
                 mv ./out/* /out
                 '''
             }
+        }
+        stage('clear') {
+             steps {
+                  cleanWs deleteDirs: true
+             }
         }
     }
 }
