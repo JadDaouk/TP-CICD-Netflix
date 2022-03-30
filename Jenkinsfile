@@ -37,6 +37,7 @@ pipeline {
         }
         stage('sonarQube') {
             steps {
+            step( [ $class: 'JacocoPublisher' ] )
                 withSonarQubeEnv('SonarQube greg') {
                 sh '''
                 mvn verify sonar:sonar
