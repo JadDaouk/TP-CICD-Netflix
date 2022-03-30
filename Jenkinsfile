@@ -30,35 +30,35 @@ pipeline {
         stage('deploiment') {
             steps {
                 sshPublisher(
-                                   continueOnError: false, failOnError: true,
-                                   publishers: [
-                                     sshPublisherDesc(
-                                      configName: "rousseau_server",
-                                      verbose: true,
-                                      transfers: [
-                                       sshTransfer(
-                                        sourceFiles: "out/",
-                                        remoteDirectory: "/"
-                                        )
-                                      ])
-                                   ]
-                                )
+                        continueOnError: false, failOnError: true,
+                        publishers: [
+                                sshPublisherDesc(
+                                        configName: "rousseau_server",
+                                        verbose: true,
+                                        transfers: [
+                                                sshTransfer(
+                                                        sourceFiles: "out/",
+                                                        remoteDirectory: "/"
+                                                )
+                                        ])
+                        ]
+                )
             }
         }
         stage('sonarQube') {
             steps {
-            step( [ $class: 'JacocoPublisher' ] )
+                step([$class: 'JacocoPublisher'])
                 withSonarQubeEnv('SonarQube greg') {
-                sh '''
+                    sh '''
                 mvn verify sonar:sonar
                 '''
                 }
             }
         }
         stage('clear') {
-             steps {
-                  cleanWs deleteDirs: true
-             }
+            steps {
+                cleanWs deleteDirs: true
+            }
         }
     }
 }
