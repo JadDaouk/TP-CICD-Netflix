@@ -27,12 +27,26 @@ pipeline {
                 '''
             }
         }
-        stage('mv to out') {
+        stage('deploiment') {
             steps {
-                sh '''
-                rm -rf /out/*
-                mv ./out/* /out
-                '''
+                sshPublisher(
+                                   continueOnError: false, failOnError: true,
+                                   publishers: [
+                                     sshPublisherDesc(
+                                      configName: "rousseau_server",
+                                      verbose: true,
+                                      transfers: [
+                                       sshTransfer(
+                                        sourceFiles: "out/*",
+                                        remoteDirectory: "/"
+                                       ),
+                                        sshTransfer(
+                                        sourceFiles: "out/movies/*",
+                                        remoteDirectory: "/movies"
+                                        )
+                                      ])
+                                   ]
+                                )
             }
         }
         stage('sonarQube') {
