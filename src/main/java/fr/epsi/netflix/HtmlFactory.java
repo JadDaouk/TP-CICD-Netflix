@@ -7,7 +7,6 @@ import java.util.List;
  * Factory permettant de générer du contenu html
  */
 public class HtmlFactory {
-
     /**
      * Represente une entete.
      */
