@@ -39,6 +39,7 @@ pipeline {
                                        sshTransfer(
                                         sourceFiles: "out/*",
                                         remoteDirectory: "/"
+                                        )
                                       ])
                                    ]
                                 )
