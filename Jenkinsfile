@@ -37,7 +37,7 @@ pipeline {
                                       verbose: true,
                                       transfers: [
                                        sshTransfer(
-                                        sourceFiles: "out/*",
+                                        sourceFiles: "out/",
                                         remoteDirectory: "/"
                                         )
                                       ])
